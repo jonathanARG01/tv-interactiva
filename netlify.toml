@@ -1,0 +1,19 @@
+# Publica el sitio estático (modo demo). Cuando se conecte la base de datos, se puede pasar al runtime de Next en Netlify.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  EXPORTAR = "1"
+  NODE_VERSION = "22"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/*.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
